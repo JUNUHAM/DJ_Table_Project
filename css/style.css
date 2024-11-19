@@ -45,7 +45,7 @@ body {
     transform: translate(-50%, -50%);
     border: 3px solid #fff;
 }
-@keyframes spin {
+@keyframes spin { /*@keyframes == 애니메이션 구동할때 사용하는 구문*/
     from {
         transform: translate(-50%, -50%) rotate(0deg);
     }
@@ -80,7 +80,7 @@ button:hover {
     top: 50%;
     right: 0px;
     transform: translateY(-50%);
-    z-index: 1;
+    z-index: 1; /*요소 가장 앞에 배치*/
 }
 .album{
     margin: 10%;
