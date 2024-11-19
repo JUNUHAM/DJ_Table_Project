@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3D Turntable</title>
-    <link rel="stylesheet" href="C:\DJ_Table_Project\css\style.css">
+    <link rel="stylesheet" href="C:\DJ_Table_Project\DJ_Table_Project\css\style.css">
 </head>
 <body>
     <div class="main">
         <div class="turntable">
             <div class="disc">
-                <img src="C:\DJ_Table_Project\img\184563798.png" alt="Butter" class="center">
+                <img src="C:\DJ_Table_Project\DJ_Table_Project\img\image1.jpg" alt="Butter" class="center">
             </div>
         </div>
         <div class="controls">
@@ -21,22 +21,22 @@
 
     <aside class="sideView">
         <div class="album">
-            <div class="album_disc">
-                <img src="C:\DJ_Table_Project\img\184563798.png" alt="Butter" class="center">
+            <div class="album_disc" onclick="getChangeDisc()">
+                <img src="C:\DJ_Table_Project\DJ_Table_Project\img\image1.jpg" alt="Butter" class="center">
             </div>
-            <img src="C:\DJ_Table_Project\img\75360441.png" alt="" class="album_cover"></div>
+            <img src="C:\DJ_Table_Project\DJ_Table_Project\img\image1.jpg" alt="" class="album_cover"></div>
         </div>
         <div class="album">
             <div class="album_disc">
-                <img src="C:\DJ_Table_Project\img\170879288.png" alt="Butter" class="center">
+                <img src="C:\DJ_Table_Project\DJ_Table_Project\img\image2.png" alt="Butter" class="center">
             </div>
-            <img src="C:\DJ_Table_Project\img\75360441.png" alt="" class="album_cover"></div>
+            <img src="C:\DJ_Table_Project\DJ_Table_Project\img\image2.png" alt="" class="album_cover"></div>
         </div>
         <div class="album">
             <div class="album_disc">
-                <img src="C:\DJ_Table_Project\img\57486061.jpg" alt="Butter" class="center">
+                <img src="C:\DJ_Table_Project\DJ_Table_Project\img\image3.png" alt="Butter" class="center">
             </div>
-            <img src="C:\DJ_Table_Project\img\75360441.png" alt="" class="album_cover"></div>
+            <img src="C:\DJ_Table_Project\DJ_Table_Project\img\image3.png" alt="" class="album_cover"></div>
         </div>
     </aside>
 
@@ -68,6 +68,21 @@
             const main = document.querySelector('.main');
             const offset = scrollPosition * 0.5; // 스크롤에 따라 페이지가 조금씩 내려가는 효과
             main.style.transform = `translateY(${offset}px)`;
+        });
+
+        function getChangeDisc(event) {
+            const clickedDisc = event.currentTarget.querySelector('img'); // 클릭된 앨범 디스크의 img
+            const turntableDisc = document.querySelector('.disc img.center'); // 턴테이블의 디스크 이미지
+            turntableDisc.src = clickedDisc.src; // 클릭된 이미지의 src를 턴테이블 디스크로 설정
+        }
+
+        // 각 앨범 디스크에 클릭 이벤트 연결
+        document.querySelectorAll('.album_disc').forEach(disc => {
+            disc.addEventListener('click', getChangeDisc);
+        });
+
+        document.querySelectorAll('.album').forEach(disc => {
+            disc.addEventListener('click', getChangeDisc);
         });
     </script>
 </body>
