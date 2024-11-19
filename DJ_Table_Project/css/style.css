@@ -14,7 +14,7 @@ body {
 .turntable {
     width: 500px;
     height: 300px;
-    background: #222;
+    background: #ffffff;
     position: relative;
     box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5), 0 10px 2000px rgba(0, 0, 0, 0.5);
     transform: rotateX(-50deg) rotateY(10deg) rotateZ(10deg);
@@ -122,4 +122,64 @@ button:hover {
 
 .scrollText.visible {
     opacity: 1;
+}
+
+.title-container {
+    text-align: center;
+    transform: scale(1.1);
+    transform:rotateX(-20deg);
+    top: 20%;
+    position: absolute;
+}
+
+.vaporwave-title {
+    font-size: 5rem;
+    font-weight: bold;
+    font-family: 'monotone', cursive;
+    color: #ffffff;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    position: relative;
+    text-shadow:
+        0 0 5px #fff,
+        0 0 10px #f0f,
+        0 0 20px #f0f,
+        0 0 40px #ff0080,
+        0 0 80px #ff0080,
+        0 0 120px #ff0080;
+    animation: glitch 3s infinite;
+}
+
+/* 텍스트 Glitch 효과 */
+@keyframes glitch {
+    0% {
+        text-shadow: 
+            2px 2px 0 #ff0080,
+            -2px -2px 0 #08f;
+    }
+    20% {
+        text-shadow: 
+            -2px -2px 0 #08f,
+            2px 2px 0 #ff0080;
+    }
+    40% {
+        text-shadow: 
+            -2px -2px 0 #ff0080,
+            2px 2px 0 #08f;
+    }
+    60% {
+        text-shadow: 
+            2px 2px 0 #08f,
+            -2px -2px 0 #ff0080;
+    }
+    80% {
+        text-shadow: 
+            -2px -2px 0 #08f,
+            2px 2px 0 #ff0080;
+    }
+    100% {
+        text-shadow: 
+            2px 2px 0 #ff0080,
+            -2px -2px 0 #08f;
+    }
 }
