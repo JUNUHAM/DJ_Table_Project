@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Turntable</title>
+    <link rel="stylesheet" href=C:\DJ_Table_Project\DJ_Table_Project\css\style.css>
+</head>
+<body>
+    <div class="title-container">
+        <h1 class="vaporwave-title">Funk Music</h1>
+        <div class="main">
+            <div class="turntable">
+                <div class="disc">
+                    <img src="https://raw.githubusercontent.com/JUNUHAM/DJ_Table_Project/main/image1.jpg" alt="Butter" class="center">
+                </div>
+            </div>
+            <audio src="" class="music" controls></audio>
+            <div class="controls">
+                <button onclick="startSpin()">Play</button>
+                <button onclick="stopSpin()">Pause</button>
+            </div>
+        </div>
+    </div>
+    <aside class="sideView">
+        <div class="album">
+            <div class="album_disc" onclick="getChangeDisc()">
+                <img src="https://raw.githubusercontent.com/JUNUHAM/DJ_Table_Project/main/image1.jpg" alt="Butter" class="center">
+            </div>
+            <img src="https://raw.githubusercontent.com/JUNUHAM/DJ_Table_Project/main/image1.jpg" alt="" class="album_cover"></div>
+        </div>
+        <div class="album">
+            <div class="album_disc">
+                <img src="https://raw.githubusercontent.com/JUNUHAM/DJ_Table_Project/main/Sodacity.png" alt="Butter" class="center">
+            </div>
+            <img src="https://raw.githubusercontent.com/JUNUHAM/DJ_Table_Project/main/Sodacity.png" alt="" class="album_cover"></div>
+        </div>
+        <div class="album">
+            <div class="album_disc">
+                <img src="https://raw.githubusercontent.com/JUNUHAM/DJ_Table_Project/main/california.png" alt="Butter" class="center">
+            </div>
+            <img src="https://raw.githubusercontent.com/JUNUHAM/DJ_Table_Project/main/california.png" alt="" class="album_cover"></div>
+        </div>
+    </aside>
+
+    <div id="scrollText" class="scrollText">
+        <h1 class="textTitle"></h1>
+        <p class="innerContent1"></p><br>
+        <p class="innerContent2"></p><br>
+        <p class="innerContent3"></p><br>
+    </div>
+
+    <script type="text/javascript">
+        const disc = document.querySelector(".disc");
+        const audio = document.querySelector('audio');
+        let contentTitle = document.querySelector('.textTitle');
+        let contentInner1 = document.querySelector('.innerContent1');
+        let contentInner2 = document.querySelector('.innerContent2');
+        let contentInner3 = document.querySelector('.innerContent3');
+
+        audio.volume = 0.1;
+
+        function startSpin() {
+            audio.play();
+            disc.style.animationPlayState = "running";  
+        }
+        function stopSpin() {
+            audio.pause();
+            disc.style.animationPlayState = "paused";
+        }
+        window.addEventListener('scroll', function() {
+            const scrollText = document.getElementById('scrollText');
+            const scrollPosition = window.scrollY;
+
+            // 스크롤 위치가 일정 이상일 때 텍스트 보이기
+            if (scrollPosition > 150) {  // 150px 이상 스크롤되면 텍스트 보이기
+                scrollText.classList.add('visible');
+            } else {
+                scrollText.classList.remove('visible');
+            }
+
+            // 페이지가 스크롤될 때 화면 이동
+            const main = document.querySelector('.main');
+            const offset = scrollPosition * 0.5; // 스크롤에 따라 페이지가 조금씩 내려가는 효과
+            main.style.transform = `translateY(${offset}px)`;
+        });
+
+        function getChangeDisc(event) {
+            const clickedDisc = event.currentTarget.querySelector('img'); // 클릭된 앨범 디스크의 img
+            const turntableDisc = document.querySelector('.disc img.center'); // 턴테이블의 디스크 이미지
+            turntableDisc.src = clickedDisc.src; // 클릭된 이미지의 src를 턴테이블 디스크로 설정
+
+            // 각 앨범에 맞는 오디오 파일 경로를 설정
+            let audioSrc;
+            let titleText = '';
+            let contentText1 = '';
+            let contentText2 = '';
+            let contentText3 = '';
+
+            if (clickedDisc.src.includes("image1.jpg")) {
+                audioSrc = "https://raw.githubusercontent.com/JUNUHAM/DJ_Table_Project/main/y2mate.com - マクロスMACROSS 8299  8299 FM.mp3";// 첫 번째 앨범의 오디오
+                titleText = "Macross 82-99 [82.99 FM]"; 
+                contentText1 = "82.99 FM은 Macross 82-99의 Future Funk와 Vaporwave 스타일을 대표하는 트랙으로,\n";
+                contentText2 = "일본 시티팝을 샘플링하고 FM 라디오 방송 스타일을 차용하여 향수를 자극하는 감성과 그루비한 리듬을 전달합니다.";
+                contentText3 = "이 곡은 과거와 현재를 연결하는 독특한 매력을 지니고 있으며, 복고풍의 사운드를 현대적인 디지털 사운드로 재구성하는 Macross 82-99의 음악적 특징을 잘 보여줍니다.";
+            } else if (clickedDisc.src.includes("Sodacity.png")) {
+                audioSrc = "https://raw.githubusercontent.com/JUNUHAM/DJ_Table_Project/main/utomp3.com - Soda City Funk.mp3"; // 두 번째 앨범의 오디오 (예시)\
+                titleText = "Soda City Funk";
+                contentText1 = "Soda City Funk는 Future Funk와 시티팝의 영향을 받은, 그루비하고 에너지 넘치는 곡입니다."
+                contentText2 = "디지털 효과와 아날로그 샘플링을 결합하여 80년대 일본 시티팝의 감성을 현대적으로 재구성한 트랙으로 파티적인 분위기와 경쾌한 리듬을 통해 청자에게 활기찬 에너지를 전달합니다.";
+                contentText3 = "Soda City Funk는 Future Funk 장르에 속하며, 이 장르는 주로 80년대와 90년대 일본 시티팝, 디스코, 펑크를 샘플링하고 현대적인 디지털 사운드로 재구성하는 특징을 가집니다.시티팝: 1980년대 일본에서 유행한 시티팝은 디스코와 재즈, 펑크의 요소를 혼합한 음악 장르로, Soda City Funk는 이러한 스타일을 현대적인 비트와 신디사이저를 사용하여 재해석합니다."
+            } else if (clickedDisc.src.includes("california.png")) {
+                audioSrc = "https://raw.githubusercontent.com/JUNUHAM/DJ_Table_Project/main/utomp3.com - California Love Original Version.mp3"; // 세 번째 앨범의 오디오 (예시)
+                titleText = "California Love";
+                contentText1 = "California Love는 G-Funk 장르의 전형적인 곡으로, 펑키한 베이스라인, 신디사이저 멜로디, talk box 효과 등을 특징으로 하며 웨스트 코스트 힙합의 문화와 정서를 잘 담아낸 트랙입니다";
+                contentText2 = "Dr. Dre와 2Pac의 콜라보레이션으로 음악적이고 문화적인 영향을 미친 이 곡은 G-Funk를 대중화시킨 대표적인 예시입니다.";
+                contentText3 = "West-Cost 힙합의 상징 : California Love는 웨스트 코스트 힙합을 대표하는 곡으로, Dr. Dre와 2Pac의 대표적인 콜라보레이션으로 자리매김하였습니다. 이 곡은 웨스트 코스트 힙합의 자유롭고 여유로운 분위기, 햇살 좋은 캘리포니아의 이미지를 대중에게 각인시켰고 G-Funk를 주류 음악으로 확립시킨 곡 중 하나입니다. 이 곡을 통해 G-Funk는 널리 알려졌고, 많은 아티스트들이 G-Funk 스타일을 차용하거나 영향을 받았습니다 또한 그루비하고 여유로운 분위를 가지고 있어 이 곡은 드라이브를 하며 들을 수 있을 만큼 여유롭고, 힙합 음악의 '느긋한' 느낌을 잘 담고 있습니다.";
+            }
+
+            // 오디오 소스 변경
+            if (audioSrc) {
+                audio.src = audioSrc; // 오디오 태그의 src 변경
+                audio.play(); // 새 오디오 재생
+            }
+
+            contentTitle.textContent = titleText; // 텍스트 타이틀 변경
+            contentInner1.textContent = contentText1;
+            contentInner2.textContent = contentText2;
+            contentInner3.textContent = contentText3; // 내용 변경
+        }
+
+        // 각 앨범 디스크에 클릭 이벤트 연결
+        document.querySelectorAll('.album_disc').forEach(disc => {
+            disc.addEventListener('click', getChangeDisc);
+        });
+
+        document.querySelectorAll('.album').forEach(disc => {
+            disc.addEventListener('click', getChangeDisc);
+        });
+    </script>
+</body>
+</html>
