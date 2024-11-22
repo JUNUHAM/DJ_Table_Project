@@ -5,20 +5,18 @@ body {
     height: 100vh;
     margin: 0;
     background: linear-gradient(90deg, rgba(251,107,198,1) 0%, rgba(203,107,214,1) 35%, rgba(70,228,224,1) 100%);
-    height: 150em;
+    /*height: 150em;*/
 }
 .main{
     width: max-content;
     height: max-content;
-    position: fixed;
-    top: 60%;
-    left: 10%;
+    top: 40%;
+    left: 35%;
 }
 .turntable {
     width: 500px;
     height: 300px;
     background: #ffffff;
-    position: relative;
     box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5), 0 10px 2000px rgba(0, 0, 0, 0.5);
     transform: rotateX(-50deg) rotateY(10deg) rotateZ(10deg);
 }
@@ -129,11 +127,11 @@ button:hover {
 }
 
 .title-container {
+    top: -1%;
     text-align: center;
     transform: scale(1.1);
-    transform:rotateX(-20deg);
-    top: 20%;
     position: absolute;
+    z-index: 1;
 }
 
 .vaporwave-title {
@@ -152,6 +150,7 @@ button:hover {
         0 0 80px #ff0080,
         0 0 120px #ff0080;
     animation: glitch 3s infinite;
+    transform: rotateZ(-5deg);
 }
 
 /* 텍스트 Glitch 효과 */
